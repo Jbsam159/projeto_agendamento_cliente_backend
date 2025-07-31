@@ -7,12 +7,14 @@ import {
   deleteClient,
 } from '../controllers/ClientController';
 import { validateClient } from "../middlewares/validateClient"
+import {authenticateToken} from "../middlewares/authMiddleware"
+
 const router = Router();
 
-router.get('/getclientes', getAllClients);
-router.get('/getcliente/:id', getClientById);
-router.post('/addcliente', validateClient, createClient);
-router.put('/updatecliente/:id', validateClient, updateClient);
-router.delete('/deletecliente/:id', deleteClient);
+router.get('/getclientes', authenticateToken, getAllClients);
+router.get('/getcliente/:id', authenticateToken, getClientById);
+router.post('/addcliente', authenticateToken, validateClient, createClient);
+router.put('/updatecliente/:id', authenticateToken, validateClient, updateClient);
+router.delete('/deletecliente/:id', authenticateToken, deleteClient);
 
 export default router;
