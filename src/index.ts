@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 import ClientRoutes from './routes/ClientRoutes';
 import AuthRoutes from './routes/authRoutes';
+import AppointmentRoutes from "./routes/AppointmentRoutes"
 
 import { PrismaClient } from '@prisma/client';
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/api', ClientRoutes);
 app.use('/auth', AuthRoutes);
+app.use("/api", AppointmentRoutes)
 
 // Rota teste
 app.get('/', (req, res) => {
