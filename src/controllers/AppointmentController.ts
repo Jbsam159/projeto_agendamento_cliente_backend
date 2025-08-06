@@ -2,6 +2,31 @@
 import { Request, Response } from 'express';
 import { prisma } from '../lib/prisma'; // ajuste o caminho conforme seu projeto
 
+export const getAllAppointments = async (req: Request, res: Response) => {
+
+  try {
+    
+    const appointments = await prisma.appointment.findMany({
+
+      include: {
+
+        client: true
+
+      },
+
+    })
+
+    return res.status(200).json(appointments)
+
+  } catch (error) {
+    
+    console.error(error);
+    return res.status(500).json({ error: 'Erro ao buscar agendamentos.' });
+
+  }
+
+}
+
 export const createAppointment = async (req: Request, res: Response) => {
   const { clientId, datetime, description } = req.body;
 

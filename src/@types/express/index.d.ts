@@ -1,10 +1,10 @@
 /// <reference types="express" />
-import { JwtPayload } from "jsonwebtoken";
+import { CustomJwtPayload } from "../express/customJwtPayload";
 
 declare global {
   namespace Express {
     interface Request {
-      client?: string | JwtPayload;
+      client?: CustomJwtPayload;
     }
   }
 }
